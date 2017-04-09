@@ -1,4 +1,4 @@
-#Simple React Auth Setup
+# Simple React Auth Setup
 
 A simple repo to explore authentication in React-Redux using both mongoDB and Postgres
 
@@ -8,4 +8,4 @@ A simple repo to explore authentication in React-Redux using both mongoDB and Po
 ```
 
 
-####BootStrapped With ReduxSimpleStarter
+#### BootStrapped With ReduxSimpleStarter
