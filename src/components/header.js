@@ -2,23 +2,35 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-class Header extends Component {
-  authButton() {
-    return ( this.props.authenticated ? <button onClick={() => this.props.authenticate(false)} className="btn btn-danger" >Sign Out</button>
-    : <button onClick={() => this.props.authenticate(true)} className="btn btn-danger" >Sign In</button> );
 
+class Header extends Component {
+  renderLinks() {
+
+    if (this.props.authenticated) {
+      return (
+        <li className="nav-item">
+          <Link className="nav-link" to="/signout">Sign Out</Link>
+        </li>
+      )
+    }
+    else {
+      return [
+        <li className="nav-item" key={1}>
+          <Link className="nav-link" to="/signin">Sign In</Link>
+        </li>,
+        <li className="nav-item" key={2}>
+          <Link className="nav-link" to="/signup">Sign Up</Link>
+        </li>
+      ]
+    }
   }
   render() {
+    console.log(this.props)
     return (
       <nav className="nav navbar-light">
+        <Link to="/" className="navbar-brand">Redux Auth</Link>
         <ul className="nav navbar-nav">
-
-          <li className="nav-item"><Link to="/">Home</Link></li>
-          <li className="nav-item"><Link to="/users">Users</Link></li>
-          <li className="nav-item"><Link to="/resources">Resources</Link></li>
-          <li className="nav-item"><Link to="/">
-            {this.authButton()}</Link>
-          </li>
+            {this.renderLinks()}
         </ul>
       </nav>
     )
@@ -27,7 +39,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.authenticated
+    authenticated: state.auth.authenticated
   }
 }
 export default connect(mapStateToProps, actions)(Header);
