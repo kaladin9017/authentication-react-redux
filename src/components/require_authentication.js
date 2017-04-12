@@ -12,7 +12,7 @@ export default function(ComposedComponent) {
     }
 
     componentDidMount() {
-      if (this.props.authenticated) {
+      if (!this.props.authenticated) {
         this.context.router.push('/')
       }
     }

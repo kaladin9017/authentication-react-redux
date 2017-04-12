@@ -73,3 +73,13 @@ export function signoutUser() {
     type: UNAUTH_USER
   };
 }
+
+export function getSecret() {
+  return function (dispatch) {
+    axios.get(ROOT_URL,
+      {
+        headers:
+        { authorization: localStorage.getItem('token') }})
+      .then(response => console.log(response))
+  };
+}
